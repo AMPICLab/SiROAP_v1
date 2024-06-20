@@ -13,3 +13,9 @@ Things to Do:
 3. Add a Thermal crosstalk model to the array. Change simulator to simulate with thermal crosstalk.
 
 4. Add code for thermal crosstalk estimation and mitigation
+
+
+
+
+License:
+The SiROAP source code is the sole property and copyright of Vishal Saxena and cannot be reused or adapted in any manner without written permission and license from the ownner.
