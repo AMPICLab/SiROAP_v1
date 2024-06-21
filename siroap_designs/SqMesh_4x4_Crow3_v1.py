@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-The code is copyright of Vishal Saxena, 2022 and permission and license is 
-required to reuse this code.
-
 Created on Fri Jul 30 21:17:26 2021
 
 @author: vsaxena
@@ -85,7 +82,7 @@ det_list = [31,11]
 
 # Redefine the BTU factory and pass to the Mesh network object to instantiate
 def btu_factory1():
-    return sip.BTU(phiU=0,phiL=0,neff=neff,ng=ng,wl0=wl0,length=btu_length, loss=btu_loss, trainable=False)
+    return sip.BTU(phiU=0,phiL=0,phi_offset=0,neff=neff,ng=ng,wl0=wl0,length=btu_length, loss=btu_loss, trainable=False)
 
 Mesh1 = siroap.SqrMesh_NxM(N,M, btu_factory1).to(DEVICE).terminate(src_list,det_list).initialize()    
 print(torch.where(Mesh1.free_ports_at)[0])

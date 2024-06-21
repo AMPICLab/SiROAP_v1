@@ -1,13 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-This is the main SiP library file that contains the optical circuit primitives
-such as Waveguide, Couplers, Ring Resonator and a 2x2 MZI Switch
-
-
-The code is copyright of Vishal Saxena, 2022 and permission and license is 
-required to reuse this code.
-
 Created on Fri Jul 30 21:17:26 2021
 
 @author: vsaxena
@@ -257,6 +250,7 @@ class BTU(Component):
         self,
         phiU=0,
         phiL=0,
+        phi_offset=0,
         neff=2.34,
         ng=3.40,
         wl0=1.55e-6,
@@ -273,7 +267,7 @@ class BTU(Component):
             ng (float): group index of the waveguide
             wl0 (float): the center wavelength for which neff is defined.
             length (float): length of the waveguide in meter.
-            loss (float): loss in the waveguide [dB/m]
+            loss (float): Entire BTU's loss [dB]
             trainable (bool): whether phi and theta are trainable
             name (optional, str): name of this specific MZI
         """
@@ -288,6 +282,7 @@ class BTU(Component):
         self.wl0 = float(wl0)
         self.phiU = parameter(torch.tensor(phiU, dtype=torch.float64, device=self.device))
         self.phiL = parameter(torch.tensor(phiL, dtype=torch.float64, device=self.device))
+        self.phi_offset = parameter(torch.tensor(phi_offset, dtype=torch.float64, device=self.device))
         self.phi00 = 0
         
     # def set_port_order(self, port_order):
@@ -303,7 +298,8 @@ class BTU(Component):
         # Always use the self.variable for variables, otherwise the model will
         # not update with network.initialize()
         phiA = (self.phiU + self.phiL)/2
-        phiD = (self.phiU - self.phiL)/2
+        # Added self.phi_offset/2 by VS on 6/21/24
+        phiD = (self.phiU - self.phiL)/2 + self.phi_offset/2
         
         # neff depends on the wavelength:
         neff = self.neff - (wls - self.wl0) * (self.ng - self.neff) / self.wl0
@@ -347,6 +343,29 @@ def dB10(input,zero_nan=True):
     where z is a complex number
     '''
     out = 10 * np.log10(input)
+    # if zero_nan:
+    #     try:
+    #         out[np.isnan(out)] = LOG_OF_NEG
+    #     except (TypeError):
+    #         # input is a number not array-like
+    #         if npy.isnan(out):
+    #             return LOG_OF_NEG
+    return out
+###############################################################################        
+
+###############################################################################
+## dB20 function
+###############################################################################
+
+def dB20(input,zero_nan=True):
+    '''
+    converts linear magnitude to db
+ 
+     db is given by
+            20*log10(|z|)
+    where z is a complex number
+    '''
+    out = 20 * np.log10(input)
     # if zero_nan:
     #     try:
     #         out[np.isnan(out)] = LOG_OF_NEG
