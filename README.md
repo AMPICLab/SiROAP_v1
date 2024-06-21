@@ -9,14 +9,13 @@ Copy the files and install the dependencies (PhotonTorch). GUI will neet some QT
 
 ## Things to Do:
 
-1. Do a better job of handling I/O ports in the array, its confusing and error prone as of now.
+1. Do a better job of handling I/O ports in the array, it's confusing and error-prone as of now.
 
-2. Add random offsets in the BTUs
+2. Add a Thermal crosstalk model to the array. Change the simulator to simulate thermal crosstalk.
 
-3. Add a Thermal crosstalk model to the array. Change simulator to simulate with thermal crosstalk.
+3. Add code for thermal crosstalk estimation and mitigation.
 
-4. Add code for thermal crosstalk estimation and mitigation
-
+The code uses phase for the BTUs instead of using DAC power. However, it may not be an issue unless electrical nonidealities need to be modeled.
 
 ## References to Cite:
 
