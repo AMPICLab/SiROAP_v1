@@ -2,9 +2,12 @@
 
 (c) Vishal Saxena, 2022
 
-This is work in progress and not for public use.
+This is a work in progress and not for public use. 
 
-Things to Do:
+## Installation
+Copy the files and install the dependencies (PhotonTorch). GUI will neet some QT libraries to be installed.
+
+## Things to Do:
 
 1. Do a better job of handling I/O ports in the array, its confusing and error prone as of now.
 
@@ -15,7 +18,7 @@ Things to Do:
 4. Add code for thermal crosstalk estimation and mitigation
 
 
-References to Cite:
+## References to Cite:
 
 1. M. J. Shawon and V. Saxena, "A Silicon Photonic Reconfigurable Optical Analog Processor (SiROAP) with a 4x4 Optical Mesh," in IEEE International Solid State Circuits Conference (ISSCC), San Francisco, Feb 2023.
 
@@ -23,5 +26,5 @@ References to Cite:
 
 3. V. Saxena and M. J. Shawon, "Reconfigurable RF Photonic Processor Architecture using a Silicon Photonics MPW Platform," GOMACTech 2022, Miami, FL, Apr 2022.
 
-License:
-The SiROAP source code is the sole property and copyright of Vishal Saxena and cannot be reused or adapted in any manner without written permission and license from the ownner.
+## License:
+The SiROAP source code is the sole property and copyright of Vishal Saxena and cannot be reused or adapted without written permission and license from the author.
